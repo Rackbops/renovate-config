@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboard": true,
+  "dependencyDashboardApproval": true,
+  "automerge": false,
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions"
+    },
+    {
+      "matchManagers": ["dockerfile", "docker-compose"],
+      "groupName": "Docker"
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["^\\.github/workflows/.*\\.ya?ml$"],
+      "matchStrings": [
+        "(?<depName>node|bun)-version:\\s*['\"]?(?<currentValue>[\\w.]+)['\"]?"
+      ],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "{{#if (equals depName \"node\")}}nodejs/node{{else}}oven-sh/bun{{/if}}",
+      "versioningTemplate": "{{#if (equals depName \"node\")}}node{{else}}semver{{/if}}"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["(^|/)package\\.json$"],
+      "matchStrings": [
+        "\"packageManager\":\\s*\"bun@(?<currentValue>[\\w.]+)\""
+      ],
+      "depNameTemplate": "oven-sh/bun",
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "semver"
+    }
+  ]
+}
