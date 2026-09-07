@@ -28,9 +28,11 @@ contract, not a one-repo tweak.
 - `automerge: false` -- Renovate never merges anything itself.
 - GitHub Actions bumps group into one PR; Docker (Dockerfile + compose) bumps group into
   another.
-- `customManagers` cover two pin kinds none of Renovate's built-in managers reach:
-  `node-version:` / `bun-version:` in workflow YAML, and a `"packageManager": "bun@x.y.z"`
-  field in `package.json` (the `bun` manager does not move that field as of 2026-09).
+- `customManagers` cover `node-version:` / `bun-version:` literal pins in workflow YAML,
+  which no built-in manager reaches. **Verified 2026-09-07 against a real PR** (Tooling#423,
+  `rackbops-discord-bot` PR #145): Renovate's own `bun` manager already moves a
+  `"packageManager": "bun@x.y.z"` field in `package.json` in the same PR as the dependency
+  bump, so no separate regex rule is needed for that pin -- one was tried and dropped.
 
 ## Status
 

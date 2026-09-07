@@ -23,16 +23,6 @@
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "{{#if (equals depName \"node\")}}nodejs/node{{else}}oven-sh/bun{{/if}}",
       "versioningTemplate": "{{#if (equals depName \"node\")}}node{{else}}semver{{/if}}"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["(^|/)package\\.json$"],
-      "matchStrings": [
-        "\"packageManager\":\\s*\"bun@(?<currentValue>[\\w.]+)\""
-      ],
-      "depNameTemplate": "oven-sh/bun",
-      "datasourceTemplate": "github-tags",
-      "versioningTemplate": "semver"
     }
   ]
 }
