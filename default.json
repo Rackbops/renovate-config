@@ -11,6 +11,18 @@
     {
       "matchManagers": ["dockerfile", "docker-compose"],
       "groupName": "Docker"
+    },
+    {
+      "matchPackageNames": ["vite", "@vitejs/plugin-react"],
+      "groupName": "vite + plugin-react"
+    },
+    {
+      "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom"],
+      "groupName": "React"
+    },
+    {
+      "matchPackageNames": ["/^@tauri-apps\\/plugin-/", "/^tauri-plugin-/"],
+      "groupName": "Tauri plugins"
     }
   ],
   "customManagers": [
