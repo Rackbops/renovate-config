@@ -3,6 +3,9 @@
   "dependencyDashboard": true,
   "dependencyDashboardApproval": true,
   "automerge": false,
+  "docker-compose": {
+    "managerFilePatterns": ["/(^|/)(?:docker-)?compose[^/]*\\.ya?ml\\.example$/"]
+  },
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
